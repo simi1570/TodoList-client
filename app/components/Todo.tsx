@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { TodoType } from "../types";
-import { title } from "process";
-import useSWR from "swr";
 import { useTodos } from "../hooks/useTodos";
 import { API_URL } from "@/constants/url";
 
