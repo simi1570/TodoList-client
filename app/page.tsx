@@ -1,9 +1,7 @@
 
 "use client";
 
-import Image from "next/image";
 import Todo from "./components/Todo";
-import useSWR from "swr";
 import { TodoType } from "./types";
 import { useRef, useState } from "react";
 import { useTodos } from "./hooks/useTodos";
