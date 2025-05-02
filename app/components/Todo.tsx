@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { TodoType } from "../types";
-import { useTodos } from "../hooks/useTodos";
 import { API_URL } from "@/constants/url";
+import { useState } from "react";
+import { useTodos } from "../hooks/useTodos";
+import { TodoType } from "../types";
 
 type TodoProps = {
     todo: TodoType
 }
 
-async function  fetcher(key: string){
-  return fetch(key).then((res) => res.json());
-}
-
 const Todo = ({ todo }:TodoProps) => {
   const [ isEditing, setIsEditing] = useState<boolean>(false);
   const [ editedTitle, setEditedTitle] = useState<string>(todo.title);
-  const { todos, isLoading, error, mutate} = useTodos();
+  const { todos, mutate} = useTodos();
   
   const handleEdit = async () => {
     setIsEditing(!isEditing);
@@ -40,7 +36,6 @@ const Todo = ({ todo }:TodoProps) => {
       });
 
       if (response.ok) {
-        const deletedTodo = await response.json();
         const updatedTodos = todos.filter((todo: TodoType) => todo.id !== id);
         mutate(updatedTodos);
       }  
